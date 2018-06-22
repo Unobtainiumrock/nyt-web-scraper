@@ -3,17 +3,18 @@
   <h1>Echo JS Scraper</h1>
   <h2>Threads</h2>
 
-  <div id="articles">
-
-    <ul class="article_list">
+  <div id="threads">
+    
       {{#each collection}}
-      <h4 data-id={{this._id}} id={{this._id}}>
-        {{this.title}}
+      <p data-id={{this._id}} id={{this._id}}>
+        <strong> Overview: {{this.title}} </strong>
+        <p>
+          <strong> Description: </strong> <span> {{this.description}} </span>
+        </p>
         <a href={{this.link}}> {{this.link}} <a/>
-      </h4>
+      </p>
       <br>
       {{/each}}
-    </ul>
 
   </div>
 

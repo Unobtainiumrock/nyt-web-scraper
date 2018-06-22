@@ -23,15 +23,11 @@ app.engine('handlebars',exphbs({ defaultLayout: 'main' }));
 app.set('view engine','handlebars');
 
 // Connect to database
-mongoose.connect("mongodb://localhost/echo-js", { promiseLibrary: bluebird });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/echo-js", { promiseLibrary: bluebird });
 
 // Routes
 const filePaths = require('./controllers/');
 filePaths.forEach(route => app.use(require(route)));
-// const homeRoute = require('./controllers/home');
-// const scrapeRoute = require('./controllers/scrape');
-// app.use(homeRoute);
-// app.use(scrapeRoute);
 
 
 app.listen(PORT, () => console.log(`Listening on: ${PORT}`));
