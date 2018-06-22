@@ -1,0 +1,36 @@
+ 
+{{!-- Idk how to properly use handlebars --}}
+
+ {{!-- This is hidden from the user it is automatically clicked when this renders. refer to the script tag at the bottom--}}
+<button id="click-modal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="display:none">
+  Launch demo modal
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{status}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{msg}} {{numInserts}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Trigger a click on the hidden modal to make it pop up when this handlebars renders --}}
+<script src="https://code.jquery.com/jquery.js"></script>
+<script>
+  $(document).ready(function () {
+    (function () {
+      document.querySelector('#click-modal').click();
+    })()
+  })
+</script>

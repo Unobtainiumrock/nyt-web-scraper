@@ -1,0 +1,11 @@
+
+/* Style to fix the issue of text extending past panel length?
+   Found this from an example
+*/
+    .card-body a {
+      word-break: break-all;
+    }
+
+    .articleHeadline {
+      line-height: 1.5;
+    }
