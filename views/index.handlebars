@@ -1,8 +1,20 @@
-
-{{!-- idk how to properly use handlebars --}}
+ {{!-- idk how to properly use handlebars --}}
 <div id="wrapper">
-  <h1>New York Times Web Scraper</h1>
-  <h2>Articles</h2>
-  <div id="articles"></div>
+  <h1>Echo JS Scraper</h1>
+  <h2>Threads</h2>
+
+  <div id="articles">
+
+    <ul class="article_list">
+      {{#each collection}}
+      <h4 data-id={{this._id}} id={{this._id}}>
+        {{this.title}}
+        <a href={{this.link}}> {{this.link}} <a/>
+      </h4>
+      {{/each}}
+    </ul>
+
+  </div>
+
   <div id="notes"></div>
 </div>

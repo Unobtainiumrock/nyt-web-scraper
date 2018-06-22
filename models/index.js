@@ -1,7 +1,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const basename  = path.basename(__filename);
+const basename  = path.basename(module.filename);
 const db = {};
 
 // Might need to add some stuff for db configuration in here.. It makes sense to have 

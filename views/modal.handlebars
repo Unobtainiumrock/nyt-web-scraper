@@ -19,18 +19,23 @@
         {{msg}} {{numInserts}}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="close-modal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
 
-{{!-- Trigger a click on the hidden modal to make it pop up when this handlebars renders --}}
+{{!-- Immediately Trigger a click on the hidden modal to make it pop up when this handlebars renders --}}
 <script src="https://code.jquery.com/jquery.js"></script>
 <script>
   $(document).ready(function () {
+    $(document).on('click','#close-modal',function() {
+      window.location = '/';
+    });
+
     (function () {
       document.querySelector('#click-modal').click();
-    })()
+    })();
+
   })
 </script>

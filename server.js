@@ -26,10 +26,12 @@ app.set('view engine','handlebars');
 mongoose.connect("mongodb://localhost/echo-js", { promiseLibrary: bluebird });
 
 // Routes
-const homeRoute = require('./controllers/home');
-const scrapeRoute = require('./controllers/scrape');
-app.use(homeRoute);
-app.use(scrapeRoute);
+const filePaths = require('./controllers/');
+filePaths.forEach(route => app.use(require(route)));
+// const homeRoute = require('./controllers/home');
+// const scrapeRoute = require('./controllers/scrape');
+// app.use(homeRoute);
+// app.use(scrapeRoute);
 
 
 app.listen(PORT, () => console.log(`Listening on: ${PORT}`));
