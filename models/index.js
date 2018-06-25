@@ -17,8 +17,6 @@ fs.readdirSync(__dirname)
     const modelName = file.slice(0,-3);
     db[modelName] = require(`./${modelName}`);
   });
-
   // console.log(Object.keys(db));
   // console.log(Object.values(db));
-
 module.exports = db;

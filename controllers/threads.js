@@ -13,7 +13,7 @@ router.get("/threads", (req, res) => {
     })
     .catch(err => {
       res.json(err);
-    })
+    });
 });
 
 // Route for grabbing a specific Article by id, populate it with it's note
@@ -26,7 +26,7 @@ router.get("/threads/:id", (req, res) => {
     })
     .catch(err => {
       res.json(err);
-    })
+    });
 });
 
 
@@ -34,7 +34,6 @@ router.get("/threads/:id", (req, res) => {
 router.post("/threads/:id", (req, res) => {
   const id = req.params.id;
   const note = req.body;
-
   db.Note.create(note)
     .then(dbNote => {
       return db.Article.findOneAndUpdate({ _id: id }, { note: dbNote._id }, { new: true })
@@ -44,7 +43,7 @@ router.post("/threads/:id", (req, res) => {
     })
     .catch(err =>{
       res.json(err);
-    })
+    });
 });
 
 module.exports = router;

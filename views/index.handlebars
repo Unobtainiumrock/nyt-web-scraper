@@ -1,22 +1,23 @@
- {{!-- idk how to properly use handlebars --}}
+ {{!-- idk how to properly use handlebars partials, so this goes here --}}
 <div id="wrapper">
-  <h1>Echo JS Scraper</h1>
-  <h2>Threads</h2>
-
-  <div id="threads">
-    
+  <h1>New York Times Scraper</h1>
+  <div class="row">
+    <div id="threads" class="col-lg-8 col-md-8 col-sm-8">
       {{#each collection}}
-      <p data-id={{this._id}} id={{this._id}}>
-        <strong> Overview: {{this.title}} </strong>
-        <p>
-          <strong> Description: </strong> <span> {{this.description}} </span>
-        </p>
-        <a href={{this.link}}> {{this.link}} <a/>
-      </p>
-      <br>
-      {{/each}}
-
+      <div class="row" id={{this._id}}>
+        <div class="col">
+          <img src={{this.photo}} style="float:right">
+          <div>
+            <h2>{{this.headLine}}</h2>
+            <p>{{this.summary}}</p>
+            <a href={{this.url}}>{{this.url}}</a>
+            <p>By: {{this.byLine}}</p>
+            <button data-id={{this._id}} class="btn btn-danger add-note">Add note</button>
+          </div>
+        </div>
+      </div>
+      <br> {{/each}}
+    </div>
+    <div id="notes" class="col-lg-4 col-md-4 col-sm-4"></div>
   </div>
-
-  <div id="notes"></div>
 </div>

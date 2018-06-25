@@ -3,19 +3,25 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ArticleSchema = new Schema({
-  title: {
+  url: {
     type: String,
     required: true,
-    // I don't see the value of adding unique true here. 
-    // It's not like the site I'm crawling will have its content change every 10 seconds
-    // or something.
-    unique: true
   },
-  link: {
+  headLine: {
     type: String,
     required: true,
-    // Ditto
-    unique: true
+  },
+  summary: {
+    type: String,
+    required: true
+  },
+  photo: {
+    type: String,
+    required: true
+  },
+  byLine: {
+    type: String,
+    byLine: true
   },
   note: {
     type: Schema.Types.ObjectId,

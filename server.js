@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 8080;
 const path = require('path');
 const mongoose = require('mongoose');
 const bluebird = require('bluebird');
+const morganBody = require('morgan-body');
 
 // Start App
 const app = express();
@@ -16,6 +17,10 @@ const logger = require('morgan');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger("dev"));
+morganBody(app, {
+  logReqDateTime: false,
+  logReqUserAgent: false,
+});
 
 // Handlebars
 const exphbs = require('express-handlebars');
