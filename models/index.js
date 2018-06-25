@@ -5,7 +5,7 @@ const basename  = path.basename(module.filename);
 const db = {};
 
 // Might need to add some stuff for db configuration in here.. It makes sense to have 
-// db logic closely tied to models.
+// db logic closely tied to models like it was shown in the generated sequelize config file.
 
 // Need a key equal to the model Name and a value associated with the 
 // key equal to a require(./path to ) 

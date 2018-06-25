@@ -5,45 +5,44 @@ const scrape = require('../services/scrape/scrape');
 const db = require('../models');
 
 // Route for getting all Articles from the db
-router.get("/threads", (req, res) => {
-  // TODO: Finish the route so it grabs all of the articles
-  db.Article.find({})
-    .then(data => {
-      res.json(data);
-    })
-    .catch(err => {
-      res.json(err);
-    });
+router.get("/threads", async (req, res) => {
+
+  try {
+    const articles = await db.Article.find({});
+    res.json(articles);
+  } catch(err) {
+    console.log(err);
+  }
+
 });
 
 // Route for grabbing a specific Article by id, populate it with it's note
-router.get("/threads/:id", (req, res) => {
-  const id = req.params.id;
-  db.Article.findOne({ _id: id })
-    .populate("note")
-    .then(dbArticle => {
-      res.json(dbArticle);
-    })
-    .catch(err => {
-      res.json(err);
-    });
+router.get("/threads/:id", async (req, res) => {
+  const _id = req.params.id;
+
+  try {
+    const article = await db.Article.findOne({ _id }).populate('note');
+    res.json(article);
+  } catch(err) {
+    console.log(err);
+  }
+
 });
 
 
 // Route for saving/updating an Article's associated Note
-router.post("/threads/:id", (req, res) => {
-  const id = req.params.id;
+router.post("/threads/:id", async (req, res) => {
+  const _id = req.params.id;
   const note = req.body;
-  db.Note.create(note)
-    .then(dbNote => {
-      return db.Article.findOneAndUpdate({ _id: id }, { note: dbNote._id }, { new: true })
-    })
-    .then(dbArticle => {
-      res.json(dbArticle);
-    })
-    .catch(err =>{
-      res.json(err);
-    });
+  
+  try {
+    const newNote = await db.Note.create(note);
+    const updatedArticle = await db.Article.findOneAndUpdate({ _id }, { note: newNote._id }, { new: true });
+    res.json(updatedArticle);
+  } catch(err) {
+    console.log(err);
+  }
+
 });
 
 module.exports = router;
